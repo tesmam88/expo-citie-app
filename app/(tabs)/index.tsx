@@ -1,10 +1,17 @@
+import { CityItem } from '@/components/CityItem';
 import { cities } from '@/data/data/cities';
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export default function Index() {
+  const{top, bottom} = useSafeAreaInsets()
   return (
     <View style ={styles.container}>
-      <FlatList data={cities} renderItem = {({item}) =><Text style={styles.title}>{item.name}</Text>}/>
+      <FlatList 
+      contentContainerStyle = {{paddingTop: top, paddingBottom : bottom }}
+      data={cities} 
+      renderItem = {({item}) => <CityItem city={item}/>}
+      />
     </View>
   );
 }
@@ -15,9 +22,5 @@ const styles = StyleSheet.create({
     flex:1,
   },
 
-  title:{
-    color:'white',
-    fontSize:24,
-    fontWeight:600,
-  }
+
 });
