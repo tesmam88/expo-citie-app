@@ -8,9 +8,15 @@ export default function Index() {
   return (
     <View style ={styles.container}>
       <FlatList 
-      contentContainerStyle = {{paddingTop: top, paddingBottom : bottom }}
+      contentContainerStyle = {{paddingTop: top, 
+        paddingBottom : bottom,
+        paddingHorizontal: 16}}
       data={cities} 
       renderItem = {({item}) => <CityItem city={item}/>}
+      keyExtractor={(item) => item.id}
+      ItemSeparatorComponent= {() => (
+      <View style = {{height:2,backgroundColor:'#5C5C5C',marginVertical:32}} />
+      )}
       />
     </View>
   );
